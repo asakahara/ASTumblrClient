@@ -7,12 +7,17 @@
 //
 
 #import "ASAppDelegate.h"
+#import "TMAPIClient.h"
 
 @implementation ASAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    [TMAPIClient sharedInstance].OAuthConsumerKey = @"SXHF8sgCPbauxGRwb7gMysysToWw19OuAxa8edaPKN2cqzw5Xg";
+    [TMAPIClient sharedInstance].OAuthConsumerSecret = @"ykNTlYLLjdRPgJkOj6Fnw7mJrgEHWknf5lX3FbNeOxnEKbseyw";
+    
     return YES;
 }
 							
@@ -41,6 +46,10 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    return [[TMAPIClient sharedInstance] handleOpenURL:url];
 }
 
 @end
